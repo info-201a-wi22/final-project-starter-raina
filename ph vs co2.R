@@ -6,7 +6,7 @@ library(zoo)
 library(tidyverse)
 library(ggplot2)
 
-setwd("D:/Assignment/final-project-starter-raina/data")
+setwd("/Users/zkornas/Documents/git/code/final-project-starter-raina/data")
 ocean_data <- read.csv("CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
 
 ocean_data$pH_TS_insitu_calculated <- as.numeric(ocean_data$pH_TS_insitu_calculated)
@@ -34,4 +34,4 @@ co2_by_ph <- ggplot(data = co2_ph, aes(x = mean_pH, y = mean_co2)) +
   geom_smooth(method = 'lm', se = FALSE)
 
 print(co2_by_ph + ggtitle("Average pH level observed in ocean samples vs average fugacity of Co2 by month") + 
-        labs(x = "Fugacity of CO2 (µatm)", y = "pH level"))
+        labs(x = "pH level", y = "Fugacity of CO2 (Î¼atm)"))
