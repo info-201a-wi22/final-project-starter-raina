@@ -93,11 +93,18 @@ Our goal for this project is that it will benefit the public and politicians by 
  + This question is important because it allows the user to understand the magnitude of the impacts of ocean acidification on marine ecosystems and economies. 
 
 
-#### Size
-The dataset used for this project to analyze the implications of ocean acidification is from the [National Centers for Environmental Information](https://www.ncei.noaa.gov/data/oceans/ncei/ocads/metadata/0219960.html). This dataset was recorded along the seawater shorelines bordering North America. The purpose of this dataset is to record the changes of seawater acidification through specific oceanic parameter variables along the entire continental shelves of North America over the span of nearly two decades (Jiang, 2021). According to Dr. Richard A. Feely the intention of this dataset is to “ help coastal enterprises and decision-makers develop strategies to adapt to the severity of ocean acidification and promote more OA research within the U.S. Exclusive Economic Zone” (Jiang, 2021). 
+## 4.0 The Dataset 
+
+#### Origin 
+
+The dataset used for this project to analyze the implications of ocean acidification is from the National Centers for Environmental Information [Coastal Open Data Analysis Product in North America](https://www.ncei.noaa.gov/data/oceans/ncei/ocads/metadata/0219960.html). This dataset was recorded along the seawater shorelines bordering North America. The purpose of this dataset is to record the changes of seawater acidification through specific oceanic parameter variables along the entire continental shelves of North America over the span of nearly two decades (Jiang, 2021). According to Dr. Richard A. Feely the intention of this dataset is to “ help coastal enterprises and decision-makers develop strategies to adapt to the severity of ocean acidification and promote more OA research within the U.S. Exclusive Economic Zone” (Jiang, 2021). The other dataset from the NCEI [Compilation of dissolved organic matter (DOM) data obtained from global ocean observations from 1994 to 2020](https://www.ncei.noaa.gov/data/oceans/ncei/ocads/metadata/0227166.html) compares dissolved organic matter in seawater over a span of 36 years. This dataset shows how measurements of dissolved organic matter (DOM) has increased from 1994 to 2020 as apart of the global ocean carbon cycle and ocean acidification. 
 
 #### Complexity
-This dataset is complied of 14 different chemical variables and oceanic parameters within the chemical reaction of ocean acidification including temperature, salinity, oxygen, nutrients, pH, calcium carbonate mineral saturation states, dissolved inorganic carbon, and total alkalinity depicting the impacts of ocean acidification through the changes in pH levels and other chemical chain reaction variables. It is important to note as well that the data was collected from multiple sites along the North American coasts, increasing the overall complexity of the data and allowing us to gain insight into the greater impact of ocean acidification. By comparing this dataset to recent data on environmental and economic impacts recorded specifically within coastal communities and shellfish industries during the time of documentation of the dataset, the impacts of ocean acidification can be identified and understood. 
+The first dataset is complied of 14 different chemical variables and oceanic parameters within of ocean acidifcation including temperature, salinity, oxygen, nutrients, pH, calcium carbonate mineral saturation states, dissolved inorganic carbon, and total alkalinity depicting the impacts of ocean acidification through the changes in pH levels and other chemical chain reaction variables. It is important to note as well that the data was collected from multiple sites along the North American coasts, increasing the overall complexity of the data and allowing us to gain insight into the greater impact of ocean acidification. By comparing this dataset to recent data on environmental and economic impacts recorded specifically within coastal communities and shellfish industries during the time of documentation of the dataset, the impacts of ocean acidification can be identified and understood. The second dataset consists of measurements of dissolved organic matter (DOM) and other and other chemical and hydrographic parameters recorded from 1994 to 2020. The other biological and chemical parameters of the ocean carbon cycle variability recorded within this dataset include total alkalinity, pH, pCO2 (fCO2) discrete, pressue, temperature, salinity, dissolved oxygen, and more. 
+
+#### Size
+
+The first dataset is collected over two decades made up of over 3,000 oceanographic profiles from 61 research ships. There are over 28,000 observations made in the dataset, each with multiple oceanic parameter variables recorded. The second dataset consists of 94324 measures of DOM and 29113 measures of TDN from 1994 to 2020 collected by over 230 cruises in the global oceans. 
 
 <br>
 
@@ -120,8 +127,11 @@ Thank you to Marina V. in the UW library 24 hour chat for helping us find some h
 ## References
 Jiang, et al. (2021, August 10). Coastal Ocean Data Analysis Product in North America (CODAP-NA, Version 2021) (NCEI Accession 0219960). National Centers for Environmental Information; National Centers for Environmental Information.
 
+Hansell, D. (2021). Ocean Carbon and Acidification Data Set: NCEI Accession 0227166. Compilation of Dissolved Organic Matter (DOM) Data Obtained from Global Ocean Observations from 1994 to 2020 (NCEI Accession 0227166). Retrieved February 19, 2022, from https://www.ncei.noaa.gov/data/oceans/ncei/ocads/metadata/0227166.html
+ 
 Jiang, et al. (2021, June 16). Ocean acidification data for coasts. National Centers for Environmental Information (NCEI). Retrieved February 4, 2022, from https://www.ncei.noaa.gov/news/ocean-acidification-data-coasts
 
 Smithsonian Ocean. (2019, June 20). Ocean Acidification. https://ocean.si.edu/ocean-life/invertebrates/ocean-acidification
 
 Thomas Frank, E&E News. (2020, January 3). Ocean Acidification Threatens the U.S. Economy. Scientific American. Retrieved March 2, 2022, from https://www.scientificamerican.com/article/ocean-acidification-threatens-the-u-s-economy/
+
