@@ -2,7 +2,7 @@ library("dplyr")
 library("leaflet")
 library("tidyr")
 
-df_viz <- read.csv("./data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
+df_viz <- read.csv("../data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
 
 # Create df with Longitude, Latitude, # of Samples for that Location, and Radius
 locations_by_frequency <- df_viz %>%

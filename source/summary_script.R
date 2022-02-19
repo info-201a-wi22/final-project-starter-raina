@@ -1,4 +1,4 @@
-df1 <- read.csv("./data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE) 
+df1 <- read.csv("../data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE) 
 summary_info<-list()
 
 # What is the average pH level from 2018? 

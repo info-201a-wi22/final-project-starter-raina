@@ -1,6 +1,6 @@
 library("dplyr")
-
-df <- read.csv("./data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
+library('tidyr')
+df <- read.csv("../data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
 
 df$pH_TS_insitu_calculated <- as.numeric(df$pH_TS_insitu_calculated)
 df$Latitude <- as.numeric(df$Latitude)

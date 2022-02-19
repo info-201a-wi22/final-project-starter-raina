@@ -1,13 +1,9 @@
-install.packages("tidyverse")
-install.packages("ggplot2")
-install.packages("zoo")
 library(dplyr)
 library(zoo)
 library(tidyverse)
 library(ggplot2)
 
-setwd("/Users/zkornas/Documents/git/code/final-project-starter-raina/data")
-ocean_data <- read.csv("CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
+ocean_data <- read.csv("../data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
 
 ocean_data$pH_TS_insitu_calculated <- as.numeric(ocean_data$pH_TS_insitu_calculated)
 ocean_data$Year_UTC <- as.numeric(ocean_data$Year_UTC)
@@ -27,4 +23,4 @@ mean_ph_plot <- ggplot(data = ph_by_date, aes(x = Date, y = mean_pH)) +
   geom_line() +
   geom_smooth(method = 'lm', se = FALSE)
 
-print(mean_ph_plot + ggtitle("Average pH level by month") + labs(x = "Date", y = "Average pH"))
+mean_ph_plot <- mean_ph_plot + ggtitle("Average pH level by month") + labs(x = "Date", y = "Average pH")
