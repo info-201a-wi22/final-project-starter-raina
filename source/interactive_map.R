@@ -2,6 +2,9 @@
 # Adapted from P02
 # Raina Scherer
 
+source('app_ui.R', local = TRUE)
+
+library("shiny")
 library("dplyr")
 library("leaflet")
 library("tidyr")
@@ -29,11 +32,14 @@ locations_by_frequency$Longitude <- as.numeric(locations_by_frequency$Longitude)
 locations_by_frequency <- locations_by_frequency %>%
   mutate(
     ocean_category = ifelse(Longitude > -100, "Atlantic", ifelse(Latitude < 66.5, "Pacific","Arctic"))
-  )
+  ) %>%
+  drop_na(ocean_category)
 
-## TODO: Change colors to all grey, use this palette for only selected option
 # Create color palette based on ocean classification
-palette_fn <- colorFactor(palette = "Set1", domain = locations_by_frequency$ocean_category)
+palette_fn <- colorFactor(
+  palette = "Set1",
+  domain = locations_by_frequency$ocean_category
+  )
 
 # Create map of collection locations with increasing radius for samples taken
 # and color coding for each ocean classification
@@ -49,7 +55,7 @@ collection_map <- leaflet(locations_by_frequency) %>%
   ) %>%
   addLegend(
     position = "bottomright",
-    title = "Oceans Sampled",
+    title = "Ocean",
     pal = palette_fn, 
     values = ~ocean_category, 
     opacity = 1

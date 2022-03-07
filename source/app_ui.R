@@ -8,7 +8,7 @@ library("leaflet")
 # Introduction: Caroline doing text content
 introduction_page <- tabPanel(
   "Introduction",
-  titlePanel("Placeholder"),
+  titlePanel("Introduction"),
   p("Introduction content")
 )
 
@@ -54,7 +54,7 @@ visualization_1 <- tabPanel(
 
 # Interactive Page 3: map (Raina)
 map_visualization <- tabPanel(
-  "Data Visualization 1 Placeholder", 
+  "Map Visualization Placeholder", 
   titlePanel("Placeholder"),
   
   sidebarLayout(
@@ -62,7 +62,8 @@ map_visualization <- tabPanel(
       selectInput(
         inputId = "ocean_select",
         label = "Ocean",
-        choices = c("Atlantic", "Pacific", "Arctic")
+        choices = c("Atlantic", "Pacific", "Arctic"),
+        selected = "Pacific"
       )
     ),
     mainPanel(
