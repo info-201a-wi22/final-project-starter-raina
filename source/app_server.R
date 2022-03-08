@@ -16,7 +16,7 @@ project_server <- function(input, output) {
   
   # Visualization 1: pH Over Time
   
-  # Zach Server Code
+  # Zach's Server Code
   output$co2_ph_plot <- renderPlotly({
     if(input$co2_or_ph == "CO2 fugacity") {
       selected.co2_ph <- co2_ph %>%
@@ -37,28 +37,26 @@ project_server <- function(input, output) {
     
     g <- ggplotly(graph)
     return(g)
-    
   })
 
   # Visualization 2: TBD
 
-  # Visualization 3: Map
+  # Visualization 3: Map (Raina)
   output$interactive_map <- renderLeaflet({
-    collection_map
-  })
-  
-  
-  #############################################################################
-  # TODO FIX ME
-  selectedData <- reactive({
-    req(input$ocean_select)
-    locations_by_frequency %>% 
-      filter(ocean_category == input$ocean_select)
-  })
-  
-  observe({
-    leafletProxy("interactive_map", data = selectedData()) %>%
-      clearShapes() %>%
+    
+    selected_pH_data <- pH_by_location %>%
+      dplyr::filter(Year_UTC == input$year_select)
+    
+    # Create color palette based on ocean classification
+    palette_fn <- colorFactor(
+      palette = "Set1",
+      domain = selected_pH_data$ocean_category
+    )
+    
+    # Create map of collection locations with increasing radius for lower pH
+    # and color coding for each ocean classification
+    collection_map <- leaflet(selected_pH_data) %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
       addCircleMarkers(
         lat = ~Latitude,
         lng = ~Longitude,
@@ -69,11 +67,22 @@ project_server <- function(input, output) {
       ) %>%
       addLegend(
         position = "bottomright",
-        title = input$ocean_select,
+        title = "Ocean",
         pal = palette_fn, 
         values = ~ocean_category, 
         opacity = 1
       )
+    
+    collection_map
   })
-  #############################################################################
+  
+  # Table to show average per Ocean for each year
+  output$grouped_table <- renderTable({
+    
+    table <- pH_by_location %>%
+      group_by(Year_UTC, ocean_category) %>%
+      summarise(Ocean_average_pH = mean(average))
+    
+    table
+  })
 }

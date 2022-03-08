@@ -27,7 +27,6 @@ ph_visualization <- tabPanel(
                      choices = c("Average pH", "CO2 fugacity"),
                      selected = "Average pH")
       ),
-      
       mainPanel(
         plotlyOutput("co2_ph_plot"),
         p(strong("Description")),
@@ -49,9 +48,9 @@ visualization_1 <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       selectInput(
-        inputId = "ocean_select",
-        label = "Ocean",
-        choices = c("Atlantic", "Pacific", "Arctic")
+        inputId = "var_select",
+        label = "placeholder",
+        choices = c("A", "B", "C")
       )
     ),
     mainPanel(
@@ -69,14 +68,15 @@ map_visualization <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       selectInput(
-        inputId = "ocean_select",
-        label = "Ocean",
-        choices = c("Atlantic", "Pacific", "Arctic"),
-        selected = "Atlantic"
+        inputId = "year_select",
+        label = "Observation Year",
+        choices = c(2004:2018),
+        selected = 2018
       )
     ),
     mainPanel(
       leafletOutput(outputId = "interactive_map"),
+      tableOutput(outputId = "grouped_table"),
       p("Placeholder"),
       h2("Takeaways")
     )
