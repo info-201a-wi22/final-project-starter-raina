@@ -1,7 +1,13 @@
+source('interactive_map.R', local = TRUE)
+source('interactive_pH_and_co2_time.R', local = TRUE)
+
 # Server Code
 library("shiny")
 library("dplyr")
 library("leaflet")
+library(tidyverse)
+library(plotly)
+library(zoo)
 
 # Server
 project_server <- function(input, output) {
@@ -9,51 +15,50 @@ project_server <- function(input, output) {
   # Summary figures
   
   # Visualization 1: pH Over Time
+  
+  # Zach Server Code
+  output$co2_ph_plot <- renderPlotly({
+    if(input$co2_or_ph == "CO2 fugacity") {
+      selected.co2_ph <- co2_ph %>%
+        select(Date, mean_co2)
+      y_title <- "Fugacity of CO2 (μatm)"
+    } else {
+      selected.co2_ph <- co2_ph %>%
+        select(Date, mean_pH)
+      y_title <- "Average pH"
+    }
+    
+    graph <- ggplot(data = selected.co2_ph, aes(x = Date, y = unlist(selected.co2_ph[,2]))) +
+      geom_line(stat = "identity") +
+      theme(legend.position = "none") +
+      ylab(y_title) +
+      xlab("Date (by month)") +
+      geom_smooth(method = 'lm', se = FALSE)
+    
+    g <- ggplotly(graph)
+    return(g)
+    
+  })
 
   # Visualization 2: TBD
 
   # Visualization 3: Map
   output$interactive_map <- renderLeaflet({
-    
-    df_viz <- read.csv("../data/CODAP_NA_v2021.csv", stringsAsFactors = FALSE)
-    
-    # Create df with Longitude, Latitude, # of Samples for that Location, and Radius
-    locations_by_frequency <- df_viz %>%
-      select(Latitude, Longitude) %>%
-      mutate(full_loc = paste(Longitude, Latitude)) %>%
-      group_by(full_loc) %>%
-      count(full_loc) %>%
-      separate(
-        col = full_loc,
-        into = c("Longitude", "Latitude"),
-        sep = " ") %>%
-      mutate(radius = ((n / max(n)) * 3) ^ 2) %>%
-      arrange(desc(radius))
-    
-    # Convert Long and Lat to numeric values
-    locations_by_frequency$Latitude <- as.numeric(locations_by_frequency$Latitude)
-    locations_by_frequency$Longitude <- as.numeric(locations_by_frequency$Longitude)
-    
-    # Add column to classify oceans, remove "NA" values
-    
-    ##TODO: This needs to be reactive
-    locations_by_frequency <- locations_by_frequency %>%
-      mutate(
-        ocean_category = ifelse(Longitude > -100, "Atlantic", ifelse(Latitude < 66.5, "Pacific","Arctic"))
-      ) %>%
-      drop_na(ocean_category) %>%
+    collection_map
+  })
+  
+  
+  #############################################################################
+  # TODO FIX ME
+  selectedData <- reactive({
+    req(input$ocean_select)
+    locations_by_frequency %>% 
       filter(ocean_category == input$ocean_select)
-    
-    # Create color palette based on ocean classification
-      palette_fn <- colorFactor(
-        palette = "viridis",
-        domain = locations_by_frequency$ocean_category)
-    
-    
-    # Create map of collection locations with increasing radius for samples taken
-    # and color coding for each ocean classification
-    collection_map <- leaflet(locations_by_frequency) %>%
-      addProviderTiles(providers$CartoDB.Positron) %>%
+  })
+  
+  observe({
+    leafletProxy("interactive_map", data = selectedData()) %>%
+      clearShapes() %>%
       addCircleMarkers(
         lat = ~Latitude,
         lng = ~Longitude,
@@ -61,13 +66,14 @@ project_server <- function(input, output) {
         stroke = FALSE,
         fillOpacity = 0.5,
         color = ~palette_fn(ocean_category)
-       ) %>%
+      ) %>%
       addLegend(
         position = "bottomright",
-        title = "Ocean",
+        title = input$ocean_select,
         pal = palette_fn, 
         values = ~ocean_category, 
         opacity = 1
       )
   })
+  #############################################################################
 }

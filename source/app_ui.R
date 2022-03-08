@@ -2,6 +2,9 @@
 library("shiny")
 library("dplyr")
 library("leaflet")
+library(tidyverse)
+library(plotly)
+library(zoo)
 
 #TODO: rm every mention of placeholder
 
@@ -14,20 +17,26 @@ introduction_page <- tabPanel(
 
 # Interactive Page 1: pH Over Time (Zach)
 ph_visualization <- tabPanel(
-  "Data Visualization 1 Placeholder", 
-  titlePanel("Placeholder"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(
-        inputId = "placeholder_var",
-        label = "Industry",
-        choices = c("placeholder")
+  "CO2 and pH Over Time",
+  tabPanel(
+    "CO2 and pH Over Time Graph",
+    sidebarLayout(
+      sidebarPanel(
+        radioButtons("co2_or_ph", 
+                     label = h3("Select CO2 or Average pH level"),
+                     choices = c("Average pH", "CO2 fugacity"),
+                     selected = "Average pH")
+      ),
+      
+      mainPanel(
+        plotlyOutput("co2_ph_plot"),
+        p(strong("Description")),
+        br("This graph aims to show the correlation between the dissolved CO2 in ocean water and the average pH 
+           level. We can clearly see that as the fugacity of CO2 increases, the pH level of ocean water decreases 
+           becoming more acidic. A possible cause of this is that more CO2 is being released into the atmosphere due 
+           to human-caused pollution. This excess CO2 could then dissolve into the ocean which will then cause the 
+           ocean to become more acidic.")
       )
-    ),
-    mainPanel(
-      p("Placeholder"),
-      h2("Takeaways")
     )
   )
 )
@@ -63,7 +72,7 @@ map_visualization <- tabPanel(
         inputId = "ocean_select",
         label = "Ocean",
         choices = c("Atlantic", "Pacific", "Arctic"),
-        selected = "Pacific"
+        selected = "Atlantic"
       )
     ),
     mainPanel(

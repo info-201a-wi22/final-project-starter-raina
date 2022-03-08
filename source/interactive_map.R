@@ -1,5 +1,4 @@
 # Interactive Map for Final Project
-# Adapted from P02
 # Raina Scherer
 
 source('app_ui.R', local = TRUE)
@@ -60,5 +59,3 @@ collection_map <- leaflet(locations_by_frequency) %>%
     values = ~ocean_category, 
     opacity = 1
   )
-
-collection_map
