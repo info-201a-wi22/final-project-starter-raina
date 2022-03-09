@@ -13,21 +13,40 @@ library("bslib")
 # Introduction: Caroline doing text content
 introduction_page <- tabPanel(
   "Introduction",
-  titlePanel("Introduction"),
-  p("The main question of this project is identifying the impacts and effects of
-ocean acidification on global ecosystems and economies. This question of 
-examining the impacts of ocean acidification is important because ocean 
-acidification threatens marine ecosystems, coastal communities, and the global 
-economy. To address this question we will compare different datasets that record
-pH levels of different bodies of water and the ramifications of ocean 
-acidification on marine life and shellfish industry."),
-  tags$video(
-    src="ocean_acidification_intro.mp4",
-    type = "video/mp4",
-    height ="400px", 
-    width="400px",
-    controls="controls"),
-  h6("Figure 1: What is Ocean Acidification? [Video]. NOAA.")
+  titlePanel(
+    h1("Introduction", align = "center")
+    ),
+  mainPanel(
+    fluidRow(
+      column(2),
+      column(9,
+        
+        img(src = "coral_bleaching.jpg", height = 300, width = 750),
+        p("A dying coral reef. Image Credit",a(
+          "firstpost.com",
+          href = "https://www.firstpost.com/tech/science/global-warming-has-been-the-cause-of-14-percent-of-the-worlds-coral-reefs-dying-out-finds-global-survey-10031741.html")),
+        br(" "),
+        p("The main question of this project is identifying the impacts and effects of
+          ocean acidification on global ecosystems and economies. This question of 
+          examining the impacts of ocean acidification is important because ocean 
+          acidification threatens marine ecosystems, coastal communities, and the global 
+          economy. To address this question we will compare different datasets that record
+          pH levels of different bodies of water and the ramifications of ocean 
+          acidification on marine life and shellfish industry."),
+        br(" "),
+        p("For more information about Ocean Acidification, this five-minute
+          video is a great starting place:"),
+        HTML('<iframe width="560" height="315" 
+             src="https://www.youtube.com/embed/rFIE6B96O38" 
+             title="YouTube video player" 
+             frameborder="0" allow="accelerometer; 
+             autoplay; clipboard-write; encrypted-media; 
+             gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+        h6("What is Ocean Acidification? [Video]. NOAA.")
+      ),
+      column(1)
+    )
+  )
 )
 
 # Interactive Page 1: pH Over Time (Zach)
@@ -152,7 +171,7 @@ summary_page <- tabPanel(
     fluidRow(
       column(2, ),
       column(
-        10,
+        9,
         br(" "),   
         p("One of the main takeaways of this project is to quantify the impacts of 
         ocean acidification through the seawater biological and chemical parameters 
@@ -193,12 +212,13 @@ summary_page <- tabPanel(
         By dramatically reducing carbon emissions immediately, we can work to 
         protect the socioecological future by maintaining seawater chemistry and 
         marine biodiversity to limit the threats of ocean acidification.  ")
-    )
+    ),
+    column(1)
   )
   )
 )
     
-# Report: Caroline doing text content
+# Report: (Caroline)
 report_page <- tabPanel(
   "Report",
   report_contents
