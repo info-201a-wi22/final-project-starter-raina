@@ -1,5 +1,6 @@
 source('interactive_map.R', local = TRUE)
 source('interactive_pH_and_co2_time.R', local = TRUE)
+source('calcite_map.R', local = TRUE)
 
 # Server Code
 library("shiny")
@@ -39,8 +40,22 @@ project_server <- function(input, output) {
     return(g)
   })
 
-  # Visualization 2: TBD
+  # Visualization 2: calcite levels
 
+  output$calc_graph <- renderPlotly({
+    df_chosen <- cal_monthly %>% 
+      select(Date, input$var_select)
+    
+    g <- ggplot(df_chosen, aes(x = Date, y = unlist(df_chosen[,2]))) +
+      geom_line()+
+      ylab(input$var_select)+
+      xlab("Time")+
+      geom_smooth(span = .5)
+    
+    g <- ggplotly(g)
+    
+  })
+  
   # Visualization 3: Map (Raina)
   output$interactive_map <- renderLeaflet({
     

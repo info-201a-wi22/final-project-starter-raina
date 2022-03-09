@@ -5,6 +5,7 @@ source("app_ui.R", local = TRUE)
 source('app_server.R', local = TRUE)
 source("interactive_map.R", local = TRUE)
 source("interactive_pH_and_co2_time.R", local = TRUE)
+source('calcite_map.R', local = TRUE)
 
 # Libraries
 library("shiny")

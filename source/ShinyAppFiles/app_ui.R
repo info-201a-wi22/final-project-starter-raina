@@ -40,22 +40,50 @@ ph_visualization <- tabPanel(
   )
 )
 
-# Interactive Page 2: TBD (Ben)
-visualization_1 <- tabPanel(
-  "Data Visualization 1 Placeholder", 
+# Interactive Page 2: (Ben)
+calcite_visualization <- tabPanel(
+  "Q2. Impact on Marine Ecosystems", 
 
   sidebarLayout(
     sidebarPanel(
       selectInput(
         inputId = "var_select",
-        label = "placeholder",
-        choices = c("A", "B", "C")
+        label = "Select Type of Calcite Dissolved Compound",
+        choices = c("avg_calcite", "avg_aragonite")
       )
     ),
     mainPanel(
       h3("How will the changes in calcite levels impact marine ecosystems?"),
-      p("Placeholder"),
-      h2("Takeaways")
+      plotlyOutput(outputId = "calc_graph"),
+      h2("What is Calcite?"),
+      p("Calcite is a category of Calcium Carbonates, consisting of calcite, 
+      magnesium-calcite, and aragonite among others. Calcium Carbonates are the
+        fundamental building blocks of many species of marine life, from coral
+        to algae. Carbonate is also known to bond with stray Hydrogen ions to
+        from bicarbonate, which cannot be used in these biological systems. pH,
+        the way we measure acidity, is the measure of dissolved Hydrogen ions.
+        As our previous graphs have shown, pH has been decreasing, meaing more 
+        acidic water, and more loose Hydrogen ions to bond with Carbonate and
+        from biologically useless Bicarbonate."),
+      br(" "),
+      p("The increased acidity is a twofold issue for carbonate. Because less 
+        carbonate is present, the depth to which carbonate can penetrate is 
+        shrinking, further reducing the range that life can access the limited 
+        carbonate supplies. This life, like coral and most mollusks, require 
+        carbonate to make calcified structures that they live in, or in the case
+        of some plankton, build their skeleton out of. Without proper levels of 
+        carbonate, these creatures will begin to die off. When these creatures 
+        die off, not only will entire food webs collapse, but a potential runaway
+        greenhouse effect could be triggered as many organisims that fixed carbon
+        into a state that would remain out of the atmosphere for centuries are
+        no longer able to do that."),
+      br(" "),
+      p("Unfortunatley, like most things working on a global scale, carbonate 
+        levels fluxuate over time, making their analysis on a timeframe we have
+        data for difficult. In our graphs we can see that the usual smooth cycles
+        of both carbonates measured in our dataset are disrupted. Although the 
+        end state of this cycle can be theorized, there is no absolute concensus
+        as of now.")
     )
   )
 )
@@ -119,7 +147,7 @@ multipage_ui <- navbarPage(
   "The Impacts of Ocean Acidification", 
   introduction_page, 
   ph_visualization,
-  visualization_1,
+  calcite_visualization,
   map_visualization,
   summary_page,
   report_page
