@@ -1,0 +1,14 @@
+name: ImpactsofOceanAcidification
+title: ImpactsofOceanAcidification
+username:
+account: rainaelm
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5810907
+bundleId: 5659117
+url: https://rainaelm.shinyapps.io/ImpactsofOceanAcidification/
+when: 1646791119.74844
+lastSyncTime: 1646791119.74845
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: ph by month.R|ph vs co2.R|README.md|summary_script.R|table.R|visualization-1.R
