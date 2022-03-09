@@ -30,8 +30,8 @@ introduction_page <- tabPanel(
           ocean acidification on global ecosystems and economies. This question of 
           examining the impacts of ocean acidification is important because ocean 
           acidification threatens marine ecosystems, coastal communities, and the global 
-          economy. To address this question we will compare different datasets that record
-          pH levels of different bodies of water and the ramifications of ocean 
+          economy. To address this question we will examine a dataset that records
+          pH levels of different bodies of water and explore the ramifications of ocean 
           acidification on marine life and shellfish industry."),
         br(" "),
         p("For more information about Ocean Acidification, this five-minute
