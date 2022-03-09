@@ -1,3 +1,6 @@
+# Source
+source('final_report.R', local = TRUE)
+
 # UI Code
 library("shiny")
 library("dplyr")
@@ -11,7 +14,20 @@ library("bslib")
 introduction_page <- tabPanel(
   "Introduction",
   titlePanel("Introduction"),
-  p("Introduction content")
+  p("The main question of this project is identifying the impacts and effects of
+ocean acidification on global ecosystems and economies. This question of 
+examining the impacts of ocean acidification is important because ocean 
+acidification threatens marine ecosystems, coastal communities, and the global 
+economy. To address this question we will compare different datasets that record
+pH levels of different bodies of water and the ramifications of ocean 
+acidification on marine life and shellfish industry."),
+  tags$video(
+    src="ocean_acidification_intro.mp4",
+    type = "video/mp4",
+    height ="400px", 
+    width="400px",
+    controls="controls"),
+  h6("Figure 1: What is Ocean Acidification? [Video]. NOAA.")
 )
 
 # Interactive Page 1: pH Over Time (Zach)
@@ -40,7 +56,7 @@ ph_visualization <- tabPanel(
   )
 )
 
-# Interactive Page 2: (Ben)
+# Interactive Page 2: Calcite Visualization (Ben)
 calcite_visualization <- tabPanel(
   "Q2. Impact on Marine Ecosystems", 
 
@@ -88,7 +104,7 @@ calcite_visualization <- tabPanel(
   )
 )
 
-# Interactive Page 3: map (Raina)
+# Interactive Page 3: Map (Raina)
 map_visualization <- tabPanel(
   "Q3. Map Visualization", 
   sidebarLayout(
@@ -126,18 +142,66 @@ map_visualization <- tabPanel(
   )
 )
 
-# Summary: Caroline doing text content
+# Summary: (Caroline)
 summary_page <- tabPanel(
   "Summary Takeaways",
-  titlePanel("Summary"),
-  p("Summary content goes here")
+  titlePanel(
+    h1("Summary", align = "center")
+  ),
+  mainPanel(
+    fluidRow(
+      column(2, ),
+      column(
+        10,
+        br(" "),   
+        p("One of the main takeaways of this project is to quantify the impacts of 
+        ocean acidification through the seawater biological and chemical parameters 
+        including CO2 and pH level. The other main takeaway is to understand the 
+        socioeconomic consequences of ocean acidification on economies and coastline 
+        communities dependent on marine resources. The biogeochemical responses and 
+        socioeconomic impacts of ocean acidification:"),
+        br(" "),
+        h4("Chemical Reactions of OA Changing Seawater Chemistry:"),
+        p("Ocean acidification causes decreased pH levels and increased CO2 absorption
+        over an extended period of time, changing the ocean’s chemistry and making 
+        marine organisms sensitive to acidification variability. As recorded within
+        the trend chart revealing the volatility of pH and fugacity CO2 levels 
+        across North American shoreline from 2005 to 2015. "),
+        br(" "),
+        h4("Biogeochemical and Biological Responses to Ocean Acidification: "),
+        p("With ocean acidification causing lower pH levels, it reduces the amount of 
+        calcium carbonate concentration and minerals needed for skeletons and shells
+        for marine organisms as identified in the chart. Decreases in calcium 
+        carbonate leaves many parts of the ocean to be unsaturated making it 
+        difficult for calcifying organisms to build and maintain their protective
+        shells putting marine organisms and ecosystems at risk. "),
+        br(" "),
+        h4("The Emerging Global Threat of Ocean Acidification:"),
+        p("Ocean acidification is a global issue that puts communities and economies 
+        at risk that are dependent on marine resources by negatively impacting the 
+        marine food web and ecosystem. With seawater acidity, causing environmental
+        degeneration of the aquatic food web and ecosystems, it has negative social 
+        and economic impacts of food insecurity and livelihoods. "),
+        br(" "),
+        h4("Reducing the impacts of Ocean Acidification to Protect Our Oceans Future:"),
+        p("There is an undeniable causation between ocean acidification and carbon 
+        pollution from anthropogenic climate change of burning fossil fuels and land
+        use change. Stakeholders need to understand the significance and global 
+        consequences of ocean acidification and climate change have on global health. 
+        Sustained efforts of monitoring and observing seawater acidification 
+        worldwide is critical for protecting coastal communities and populations. 
+        By dramatically reducing carbon emissions immediately, we can work to 
+        protect the socioecological future by maintaining seawater chemistry and 
+        marine biodiversity to limit the threats of ocean acidification.  ")
+    )
+  )
+  )
 )
-
-# Report: Caroline doing text content (??)
+    
+# Report: Caroline doing text content
 report_page <- tabPanel(
   "Report",
-  titlePanel("Final Report"),
-  p("Report Content Goes Here")
+  report_contents
 )
 
 multipage_ui <- navbarPage(

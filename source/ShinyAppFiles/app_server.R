@@ -40,7 +40,7 @@ project_server <- function(input, output) {
     return(g)
   })
 
-  # Visualization 2: calcite levels
+  # Visualization 2: Calcite Levels (Ben)
 
   output$calc_graph <- renderPlotly({
     df_chosen <- cal_monthly %>% 
