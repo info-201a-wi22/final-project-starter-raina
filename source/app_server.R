@@ -79,10 +79,9 @@ project_server <- function(input, output) {
   # Table to show average per Ocean for each year
   output$grouped_table <- renderTable({
     
-    table <- pH_by_location %>%
-      group_by(Year_UTC, ocean_category) %>%
-      summarise(Ocean_average_pH = mean(average))
+    ocean_pH_selected <- ocean_ph_table %>%
+      dplyr::filter(Year == input$year_select)
     
-    table
+    ocean_pH_selected
   })
 }

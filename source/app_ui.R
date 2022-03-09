@@ -5,6 +5,7 @@ library("leaflet")
 library(tidyverse)
 library(plotly)
 library(zoo)
+library("bslib")
 
 #TODO: rm every mention of placeholder
 
@@ -17,17 +18,18 @@ introduction_page <- tabPanel(
 
 # Interactive Page 1: pH Over Time (Zach)
 ph_visualization <- tabPanel(
-  "CO2 and pH Over Time",
+  "Q1. CO2 and pH Over Time",
   tabPanel(
     "CO2 and pH Over Time Graph",
     sidebarLayout(
       sidebarPanel(
         radioButtons("co2_or_ph", 
-                     label = h3("Select CO2 or Average pH level"),
+                     label = "Select CO2 or Average pH level",
                      choices = c("Average pH", "CO2 fugacity"),
                      selected = "Average pH")
       ),
       mainPanel(
+        h3("How have pH levels changed in oceans from 2005 to 2015?"),
         plotlyOutput("co2_ph_plot"),
         p(strong("Description")),
         br("This graph aims to show the correlation between the dissolved CO2 in ocean water and the average pH 
@@ -43,8 +45,7 @@ ph_visualization <- tabPanel(
 # Interactive Page 2: TBD (Ben)
 visualization_1 <- tabPanel(
   "Data Visualization 1 Placeholder", 
-  titlePanel("Placeholder"),
-  
+
   sidebarLayout(
     sidebarPanel(
       selectInput(
@@ -54,6 +55,7 @@ visualization_1 <- tabPanel(
       )
     ),
     mainPanel(
+      h3("How will the changes in calcite levels impact marine ecosystems?"),
       p("Placeholder"),
       h2("Takeaways")
     )
@@ -62,23 +64,38 @@ visualization_1 <- tabPanel(
 
 # Interactive Page 3: map (Raina)
 map_visualization <- tabPanel(
-  "Map Visualization Placeholder", 
-  titlePanel("Placeholder"),
-  
+  "Q3. Map Visualization", 
   sidebarLayout(
     sidebarPanel(
       selectInput(
         inputId = "year_select",
         label = "Observation Year",
-        choices = c(2004:2018),
-        selected = 2018
-      )
+        choices = c(2007:2017),
+        selected = 2013
+      ),
+      p("Only 2012 and 2013 contain observations for all three sampled oceans.")
     ),
     mainPanel(
+      h3("Which areas around the North American coastline are most affected by
+         ocean acidification?"),
       leafletOutput(outputId = "interactive_map"),
+      br(" "),
+      h4("Average pH Level for Selected Year"),
       tableOutput(outputId = "grouped_table"),
-      p("Placeholder"),
-      h2("Takeaways")
+      br(" "),
+      h4("Takeaways"),
+      p("This page shows both a visual and tabular representation of the pH
+        levels of each Ocean, per year. The table has this information averaged
+        for each year, whereas the map shows each individual measurement, scaled 
+        larger the more acidic the sample was."),
+      p("All oceans have become more acidic over the length of the data set,
+        however it seems as though Arctic ocean has overall suffered the
+        worst acidification. From 2010 to 2013, the average pH went from 8.21
+        to 8.14. The numbers may seem relatively small, but as the National Oceanic and
+        Atmospheric Administration explains, “the pH scale is logarithmic, so
+        [a 0.1] change represents approximately a 30 percent increase in acidity”
+        (NOAA, 2020). In other words, these small changes have massive
+        ramifications for ocean life.")
     )
   )
 )
@@ -98,7 +115,10 @@ report_page <- tabPanel(
 )
 
 multipage_ui <- navbarPage(
-  "Placeholder title", 
+  theme = bs_theme(
+    bootswatch = "flatly",
+      ),
+  "The Impacts of Ocean Acidification", 
   introduction_page, 
   ph_visualization,
   visualization_1,
